@@ -6,6 +6,7 @@ import hotelsRouter from './routers/hotels.js';
 import roomsRouter from './routers/rooms.js';
 import usersRouter from './routers/users.js';
 import cookieParser from 'cookie-parser';
+import { errorHandler } from './utils/error.js'; 
 
 dotenv.config();
 
@@ -37,19 +38,8 @@ app.use('/api/hotels' , hotelsRouter);
 app.use('/api/rooms' , roomsRouter);
 app.use('/api/users' , usersRouter);
 
-// ERROR HANDLING MIDDLEWARE
-// This MUST be the last app.use() call
-app.use((err, req, res, next) => {
-  const errorStatus = err.status || 500;
-  const errorMessage = err.message || "Something went wrong!";
-  
-  return res.status(errorStatus).json({
-    success: false,
-    status: errorStatus,
-    message: errorMessage,
-    stack: err.stack, // The stack trace is useful for debugging
-  });
-})
+// centralized error handler
+app.use(errorHandler);
 
 app.listen(port, () => {
   connect(); 
