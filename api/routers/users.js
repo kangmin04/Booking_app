@@ -5,7 +5,7 @@ import {
   getUser,
   getUsers,
 } from '../controllers/user.js';
-import { verifyToken, verifyUser } from '../utils/verifyToken.js';
+import { verifyToken, verifyUser , verifyAdmin } from '../utils/verifyToken.js';
 
 const router = express.Router();
 
@@ -23,15 +23,15 @@ router.get('/checkadmin/:id', verifyAdmin,(req, res, next) => {
   });
   
 // UPDATE
-router.put('/:id', updateUser);
+router.put('/:id', verifyUser,updateUser);
 
 // DELETE
-router.delete('/:id', deleteUser);
+router.delete('/:id',verifyUser, deleteUser);
 
 // GET
-router.get('/:id', getUser);
+router.get('/:id', verifyUser,getUser);
 
 // GET ALL
-router.get('/', getUsers);
+router.get('/', verifyAdmin,getUsers);
 
 export default router;

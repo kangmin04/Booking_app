@@ -13,7 +13,7 @@ export const verifyToken = (req,res,next) => {
 }
 
 export const verifyUser = (req,res,next) => {
-    verifyToken(req,res, () => {
+    verifyToken(req,res, next, () => {
         if(req.user.id === req.params.id || req.user.isAdmin){
             next();
         }else{
@@ -23,7 +23,7 @@ export const verifyUser = (req,res,next) => {
 }
 
 export const verifyAdmin = (req,res,next) => {  //req,res이후에 나오는이걸 next()자리에 전달해서 실행하는것. 
-    verifyToken(req,res , () => {
+    verifyToken(req,res , next, () => {
         if(req.user.isAdmin){
             next();
         }else{

@@ -15,13 +15,17 @@ const port = 8080;
 
 const connect = async () => {
   try {
-    await mongoose.connect(process.env.MONGO);
+    await mongoose.connect(process.env.MONGO); 
     console.log('CONNECTED to mongo db');
   } catch (error) {
     throw error; 
   }
 }
 
+// await이 없으면 mongoose.connect 백그라운드에서 연결하며 그 다음 콘솔.log 출력. 
+//이후 connect 함수가 종료되고 하단의 코드들이 실행되는 중, db연결 실패로 오류가 나도 catch 블럭을 지나서 오류 실행이 안됨. 
+//즉 연결 완료거나 실패할 때까지 await으로 기다리게함. --> 연결 성공시에만 Connected to mongodb 출력됨. 
+//await을 사용함으로써 db 연결이 성공하고 서버가 연결된다는 보장을 줌 -> 안정적. 
 mongoose.connection.on('disconnected', () => {
   console.log('mongo db disconnected');
 });
