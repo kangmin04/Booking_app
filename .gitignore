@@ -3,3 +3,6 @@
 
 # Environment variables
 .env
+git remote add origin git@github.com:kangmin04/Booking_app.git
+
+cookie.txt
