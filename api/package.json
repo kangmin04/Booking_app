@@ -12,15 +12,15 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
     "dotenv": "^17.2.3",
     "ejs": "^3.1.9",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.19.0"
+    "mongoose": "^8.19.0",
+    "openssl": "^2.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
   }
 }
-
-

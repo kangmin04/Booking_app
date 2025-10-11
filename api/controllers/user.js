@@ -41,4 +41,14 @@ export const deleteUser = async (req,res,next) => {
     }
 
 }
+
+export const deleteAllUsers = async (req, res, next) => {
+    try {
+        await User.deleteMany({});
+        res.status(200).json("All users have been deleted.");
+    } catch (err) {
+        next(err);
+    }
+};
+
     
