@@ -9,11 +9,13 @@ export const register = async (req,res,next) => {
         const hash = bcrypt.hashSync(req.body.password, salt);
 
         const newUser = new User({
-            username: req.body.username, //input의 name값들./ 
-            email: req.body.email,
-            password: hash,
+           ...req.body,  
+            password: hash
         });
-
+//before : i indicated username: req.body.username, 
+//username만 사용 , email: req.body.email,  but i didnt sent isadmin data. so it always end with false. 
+//추가 : 현재 방식은 isAdmin : true로 작성 시 탈취될 위험이 있다. 단지 개발목적( 공부 목적에 적합) 
+// 현업에서는 초기 서버 시작시 어드민계정 하나만 직접 만듦. 
         await newUser.save();
         res.status(200).send("User has been created");
 
