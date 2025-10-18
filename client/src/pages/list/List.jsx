@@ -1,10 +1,12 @@
 import React from 'react';
 import './List.css';
+import Navbar from '../../components/navbar/Navbar.jsx';
+import Header from '../../components/header/Header.jsx';
 
 const List = () => {
   return (
     <div>
-      <h1>List Page</h1>
+      <Navbar/><Header type="list"/>
     </div>
   );
 };
