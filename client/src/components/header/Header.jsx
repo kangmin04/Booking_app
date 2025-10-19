@@ -1,12 +1,12 @@
-import React from 'react';
+import { React, useState  } from 'react';
 import './header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faBed , faPlane , faCar , faTaxi, faCalendarDays , faPerson} from '@fortawesome/free-solid-svg-icons';
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-import { useState } from 'react';
-import {format} from 'date-fns';; //format(new Date(2014, 1, 11), "MM/dd/yyyy"); 뒤의 형식에 맞춰짐.
+import {format} from 'date-fns'; //format(new Date(2014, 1, 11), "MM/dd/yyyy"); 뒤의 형식에 맞춰짐.
+import { useNavigate } from 'react-router-dom';
 
 const Header = ({type}) => {
     const [openDate, setOpenDate] = useState(false);
@@ -24,6 +24,8 @@ const Header = ({type}) => {
         children : 0 , 
         room : 1 , 
       })
+      const navigate = useNavigate();
+      
       //class component -> setState가 얕은 병합 기본적으로 지원. 
       //this.state = {a : 1 , b : 2}  this.setState({a : 200}) 이여도 a : 200 , b : 2로 존재.
       //function component -> 위와 같은 경우 b는 사라짐. 
@@ -38,9 +40,16 @@ const Header = ({type}) => {
         setOptions(prev => {
             return {
                 ...prev , 
-                [name] : operation === 'i' ? options[name] + 1 : options[name] - 1 , 
+                [name] : operation === 'i' ? prev[name] + 1 : prev[name] - 1 , 
             }
+    
         }) }
+        
+
+        const handleSearch = () => {
+            navigate('/hotels');
+        };
+
   return (
     <div className="header">
         <div className={type === 'list' ? "headerContainer listMode" : 'headerContainer'}>
@@ -129,7 +138,7 @@ const Header = ({type}) => {
                         </div>
                     </div>}
                 </div>
-                <button className="headerBtn">Search</button>
+                <button className="headerBtn" onClick={handleSearch}>Search</button>
             </div>
             </>
             }
