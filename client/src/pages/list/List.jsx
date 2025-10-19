@@ -13,6 +13,10 @@ const List = () => {
   const [openDate , setOpenDate] = useState('false'); 
   const [options, setOptions] = useState(location.state.options);
 
+  const handleDestination = (e) => {
+    setDestination(e.target.value); 
+    console.log(destination);
+  }
   return (
     <div>
       <Navbar/><Header type="list"/>
@@ -24,7 +28,7 @@ const List = () => {
                 <label>Destination</label>
                 <input type="text" 
                placeholder={destination} 
-               onChange = {() => {setDestination()}}/>
+               onChange = {handleDestination}/>
              </div>
              <div className="lsItem">
               <label>Check-in Date</label>
@@ -56,19 +60,19 @@ const List = () => {
                   <span className='lsOptionText'>
                     Adult
                   </span>
-                  <input type="number" className="lsOptionInput" value = {options.adult}/>
+                  <input type="number" className="lsOptionInput" min={0} placeholder= {options.adult}/>
                 </div>
                 <div className="lsOptionItem">
                   <span className='lsOptionText'>
                     Children
                   </span>
-                  <input type="number" className="lsOptionInput" value = {options.children}/>
+                  <input type="number" min={0} className="lsOptionInput" placeholder = {options.children}/>
                 </div>
                 <div className="lsOptionItem">
                   <span className='lsOptionText'>
                     Room
                   </span>
-                  <input type="number" className="lsOptionInput" value = {options.room}/>
+                  <input type="number" min={1}  className="lsOptionInput" placeholder= {options.room}/>
                 </div>
              </div>
                 <button>Search</button>
