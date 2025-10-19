@@ -9,6 +9,7 @@ import {format} from 'date-fns'; //format(new Date(2014, 1, 11), "MM/dd/yyyy"); 
 import { useNavigate } from 'react-router-dom';
 
 const Header = ({type}) => {
+    const [destination , setDestination] = useState('');
     const [openDate, setOpenDate] = useState(false);
     const [date, setDate] = useState([
         {
@@ -43,11 +44,9 @@ const Header = ({type}) => {
                 [name] : operation === 'i' ? prev[name] + 1 : prev[name] - 1 , 
             }
     
-        }) }
-        
-
+        }) }                                               
         const handleSearch = () => {
-            navigate('/hotels');
+            navigate('/hotels' , {state : {destination , date , options} });
         };
 
   return (
@@ -89,7 +88,8 @@ const Header = ({type}) => {
                     <input 
                         type="text" 
                         placeholder="Where are you going?" 
-                        className='headerSearchInput'/>
+                        className='headerSearchInput' 
+                        onChange = {(e) => {setDestination(e.target.value)}}/>
                 </div>
                 <div className="headerSearchItem">
                     <FontAwesomeIcon icon={faCalendarDays} className='headerIcon'/>
