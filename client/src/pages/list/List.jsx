@@ -5,6 +5,7 @@ import Header from '../../components/header/Header.jsx';
 import { useLocation } from 'react-router-dom';
 import {format} from 'date-fns';
 import { DateRange } from 'react-date-range';
+import SearchItem from '../../components/searchItem/SearchItem.jsx';
 
 const List = () => {
   const location = useLocation();
@@ -15,7 +16,7 @@ const List = () => {
 
   const handleDestination = (e) => {
     setDestination(e.target.value); 
-    console.log(destination);
+    
   }
   return (
     <div>
@@ -44,6 +45,7 @@ const List = () => {
              </div>
              <div className="lsItem">
                 <label>Options</label>
+                <div className="lsOptions">
                 <div className="lsOptionItem">
                   <span className='lsOptionText'>
                     Min price <small>per night</small>
@@ -74,11 +76,21 @@ const List = () => {
                   </span>
                   <input type="number" min={1}  className="lsOptionInput" placeholder= {options.room}/>
                 </div>
+                </div>
              </div>
                 <button>Search</button>
           </div>
           <div className="listSearchResult">
-              result
+                <SearchItem/>
+                <SearchItem/>
+                <SearchItem/>
+                <SearchItem/>
+                <SearchItem/>
+                <SearchItem/>
+                <SearchItem/>
+                <SearchItem/>
+                <SearchItem/>
+                <SearchItem/>
           </div>
         </div>
       </div>
