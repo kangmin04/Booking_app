@@ -22,3 +22,4 @@ git pull로 원격 내용 가져오려함.
 최종 커밋함. 
 
 
+curl -X POST http://localhost:8080/api/hotels -H "Content-Type: application/json" -d '{"name":"Hotel Madrid","type":"hotel","city":"Madrid","address":"123 Main St","distance":"500","desc":"A beautiful hotel in the heart of Madrid.","cheapestPrice":250}'

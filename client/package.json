@@ -2,7 +2,8 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8800/api",
+    "proxy": "https://8080-firebase-bookingapp-1759652548276.cluster-fkltigo73ncaixtmokrzxhwsfc.cloudworkstations.dev" ,
+  
   "dependencies": {
     "@craco/craco": "^7.1.0",
     "@fortawesome/fontawesome-svg-core": "^7.1.0",

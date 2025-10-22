@@ -62,19 +62,22 @@ const List = () => {
                   <span className='lsOptionText'>
                     Adult
                   </span>
-                  <input type="number" className="lsOptionInput" min={0} placeholder= {options.adult}/>
+                  <input type="number" className="lsOptionInput" min={0} placeholder= {options.adult}
+                  onChange={(e) => setOptions({...options , adult: e.target.value})}/>
                 </div>
                 <div className="lsOptionItem">
                   <span className='lsOptionText'>
                     Children
                   </span>
-                  <input type="number" min={0} className="lsOptionInput" placeholder = {options.children}/>
+                  <input type="number" min={0} className="lsOptionInput" placeholder = {options.children}
+                  onChange={(e) => setOptions({...options , children: e.target.value})}/>
                 </div>
                 <div className="lsOptionItem">
                   <span className='lsOptionText'>
                     Room
                   </span>
-                  <input type="number" min={1}  className="lsOptionInput" placeholder= {options.room}/>
+                  <input type="number" min={1}  className="lsOptionInput" placeholder= {options.room}
+                  onChange={(e) => setOptions({...options , room: e.target.value})}/>
                 </div>
                 </div>
              </div>

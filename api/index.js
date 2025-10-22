@@ -7,7 +7,7 @@ import roomsRouter from './routers/rooms.js';
 import usersRouter from './routers/users.js';
 import cookieParser from 'cookie-parser';
 import { errorHandler } from './utils/error.js'; 
-
+import cors from 'cors';
 dotenv.config();
 
 const app = express();
@@ -35,6 +35,7 @@ mongoose.connection.on('connected', () => {
 });
 
 //middlewares
+app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 app.use('/api/auth' , authRouter);
