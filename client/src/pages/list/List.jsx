@@ -14,13 +14,19 @@ const List = () => {
   const [date, setDate] = useState(location.state.date);
   const [openDate , setOpenDate] = useState(false); 
   const [options, setOptions] = useState(location.state.options);
-
-  const {data , loading , error ,reFetch} = useFetch('https://8080-firebase-bookingapp-1759652548276.cluster-fkltigo73ncaixtmokrzxhwsfc.cloudworkstations.dev/api/hotels?city=Madrid'); 
+  const [min , setMin] = useState(undefined);
+  const [max , setMax] = useState(undefined);
+  
+  const {data , loading , error ,reFetch} = useFetch(`/api/hotels?city=${destination}&min=${min || 1}&max=${max || 9999}`); 
   console.log('List 가져오는 과정에서 error : ' , error)
   console.log(data); 
   const handleDestination = (e) => {
     setDestination(e.target.value); 
     
+  }
+
+  const handleClick = () => {
+    reFetch();
   }
   return (
     <div>
@@ -54,13 +60,15 @@ const List = () => {
                   <span className='lsOptionText'>
                     Min price <small>per night</small>
                   </span>
-                  <input type="number" className="lsOptionInput" />
+                  <input type="number" className="lsOptionInput"  
+                  onChange={(e) => {setMin(e.target.value)}} />
                 </div>
                 <div className="lsOptionItem">
                   <span className='lsOptionText'>
                     Max price <small>per night</small>
                   </span>
-                  <input type="number" className="lsOptionInput" />
+                  <input type="number" className="lsOptionInput"
+                  onChange={(e) => {setMax(e.target.value)}}/>
                 </div>
                 <div className="lsOptionItem">
                   <span className='lsOptionText'>
@@ -85,7 +93,7 @@ const List = () => {
                 </div>
                 </div>
              </div>
-                <button onClick={reFetch}>Search</button>
+                <button onClick={handleClick}>Search</button>
           </div>
           <div className="listSearchResult">
              {

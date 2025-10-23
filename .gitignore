@@ -6,3 +6,12 @@
 git remote add origin git@github.com:kangmin04/Booking_app.git
 
 cookie.txt
+
+client/node_modules/
+
+# api 쪽
+api/node_modules/
+
+# 공통
+node_modules/
+node_modules

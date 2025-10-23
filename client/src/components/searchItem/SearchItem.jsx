@@ -1,4 +1,5 @@
 import "./searchItem.css";
+import {Link} from 'react-router-dom';
 
 // https://cf.bstatic.com/xdata/images/hotel/square600/261707778.webp?k=fa6b6128468ec15e81f7d076b6f2473fa3a80c255582f155cae35f9edbffdd78&o=&s=1
 const SearchItem = ({item}) => {
@@ -14,10 +15,10 @@ const SearchItem = ({item}) => {
         <span className="siDistance">{item.distance}m from center</span>
         <span className="siTaxiOp">Free airport taxi</span>
         <span className="siSubtitle">
-          {item.desc}
+          good place. 
         </span>
         <span className="siFeatures">
-          Entire studio • 1 bathroom • 21m² 1 full bed
+        {item.desc}
         </span>
         <span className="siCancelOp">Free cancellation </span>
         <span className="siCancelOpSubtitle">
@@ -34,9 +35,11 @@ const SearchItem = ({item}) => {
         }
        
         <div className="siDetailTexts">
-          <span className="siPrice">$123</span>
+          <span className="siPrice">${item.cheapestPrice}</span>
           <span className="siTaxOp">Includes taxes and fees</span>
+          <Link to={`/hotels/${item._id}`}>
           <button className="siCheckButton">See availability</button>
+          </Link>
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ const useFetch = (url) => {
     const [loading , setLoading] = useState(false) ; 
     const [error , setError] = useState(false) ; 
 
-    console.log('useFetch에서 전달받은', url);
+    // console.log('useFetch에서 전달받은', url);
 
     useEffect(() => {
         const fetchData = async () => {

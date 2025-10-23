@@ -8,6 +8,9 @@ import usersRouter from './routers/users.js';
 import cookieParser from 'cookie-parser';
 import { errorHandler } from './utils/error.js'; 
 import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 dotenv.config();
 
 const app = express();
@@ -45,6 +48,16 @@ app.use('/api/users' , usersRouter);
 
 // centralized error handler
 app.use(errorHandler);
+
+// ✅ React build 서빙
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use(express.static(path.join(__dirname, "../client/build")));
+
+// ✅ React 라우터 fallback (API 외 모든 요청을 index.html로)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+});
 
 app.listen(port, () => {
   connect(); 
