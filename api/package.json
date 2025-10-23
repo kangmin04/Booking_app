@@ -17,6 +17,7 @@
     "dotenv": "^17.2.3",
     "ejs": "^3.1.9",
     "express": "^4.21.2",
+    "http-proxy-middleware": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.19.0",
     "openssl": "^2.0.0"

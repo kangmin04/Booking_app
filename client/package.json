@@ -2,8 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-    "proxy": "https://8080-firebase-bookingapp-1759652548276.cluster-fkltigo73ncaixtmokrzxhwsfc.cloudworkstations.dev" ,
-  
+  "proxy" : "https://8080-firebase-bookingapp-1759652548276.cluster-fkltigo73ncaixtmokrzxhwsfc.cloudworkstations.dev/",
   "dependencies": {
     "@craco/craco": "^7.1.0",
     "@fortawesome/fontawesome-svg-core": "^7.1.0",
@@ -17,6 +16,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.12.2",
     "date-fns": "^4.1.0",
+    "http-proxy-middleware": "^3.0.5",
     "react": "^19.2.0",
     "react-date-range": "^2.0.1",
     "react-dom": "^19.2.0",

@@ -6,14 +6,18 @@ import { useLocation } from 'react-router-dom';
 import {format} from 'date-fns';
 import { DateRange } from 'react-date-range';
 import SearchItem from '../../components/searchItem/SearchItem.jsx';
+import useFetch from '../../hooks/useFetch.js';
 
 const List = () => {
   const location = useLocation();
   const [destination , setDestination] = useState(location.state.destination);
   const [date, setDate] = useState(location.state.date);
-  const [openDate , setOpenDate] = useState('false'); 
+  const [openDate , setOpenDate] = useState(false); 
   const [options, setOptions] = useState(location.state.options);
 
+  const {data , loading , error ,reFetch} = useFetch('https://8080-firebase-bookingapp-1759652548276.cluster-fkltigo73ncaixtmokrzxhwsfc.cloudworkstations.dev/api/hotels?city=Madrid'); 
+  console.log('List 가져오는 과정에서 error : ' , error)
+  console.log(data); 
   const handleDestination = (e) => {
     setDestination(e.target.value); 
     
@@ -81,19 +85,18 @@ const List = () => {
                 </div>
                 </div>
              </div>
-                <button>Search</button>
+                <button onClick={reFetch}>Search</button>
           </div>
           <div className="listSearchResult">
-                <SearchItem/>
-                <SearchItem/>
-                <SearchItem/>
-                <SearchItem/>
-                <SearchItem/>
-                <SearchItem/>
-                <SearchItem/>
-                <SearchItem/>
-                <SearchItem/>
-                <SearchItem/>
+             {
+              loading ? 'Loading' :  <>
+                  {data.map(item => {
+                    return <SearchItem item={item} key={item._id}/>  //item 전달하면서 searchItem에서 props으로 name , address 등 접근 가능하도록. 
+                  })}
+                  
+              </>
+             }
+              
           </div>
         </div>
       </div>
