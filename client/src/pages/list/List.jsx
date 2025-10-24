@@ -19,7 +19,6 @@ const List = () => {
   
   const {data , loading , error ,reFetch} = useFetch(`/api/hotels?city=${destination}&min=${min || 1}&max=${max || 9999}`); 
   console.log('List 가져오는 과정에서 error : ' , error)
-  console.log(data); 
   const handleDestination = (e) => {
     setDestination(e.target.value); 
     
@@ -61,14 +60,14 @@ const List = () => {
                     Min price <small>per night</small>
                   </span>
                   <input type="number" className="lsOptionInput"  
-                  onChange={(e) => {setMin(e.target.value)}} />
+                  onChange={(e) => {setMin(e.target.value)}} min={0} />
                 </div>
                 <div className="lsOptionItem">
                   <span className='lsOptionText'>
                     Max price <small>per night</small>
                   </span>
                   <input type="number" className="lsOptionInput"
-                  onChange={(e) => {setMax(e.target.value)}}/>
+                  onChange={(e) => {setMax(e.target.value)}} min={0}/>
                 </div>
                 <div className="lsOptionItem">
                   <span className='lsOptionText'>

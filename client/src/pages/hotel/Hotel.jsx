@@ -10,13 +10,21 @@ import {
   faCircleXmark,
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import useFetch from "../../hooks/useFetch";
 
 const Hotel = () => {
   const [OpenSlider , setOpenSlider] = useState(false); //'false'로 주면 문자열을 인식해서 true로 반영된다. 
   const [SlideNumber , setSlideNumber] = useState(0); 
   //i를 받아와서 이걸 어떤식으로 리턴 시켜줘야할지 모르겠었는데
   //useState 로 slideNumber을 정의해서 이걸 넘겨주는 방식... 활용함! 
+  const location = useLocation();
+  const id = location.pathname.split('/')[2];
+
+  const {data , loading,error} = useFetch(`/api/hotels/find/${id}`);
+  console.log(data);
+ 
   const handleClick = (i) =>{
     // setOpenSlider(() => !OpenSlider);
     setOpenSlider(true);
@@ -29,22 +37,7 @@ const Hotel = () => {
       setSlideNumber(SlideNumber === photos.length - 1 ? 0 : SlideNumber + 1);
     }
   };
-  // const handleArrow = (type) => {
-  //   if(type === 'left'){
-  //     if(SlideNumber === 0){
-  //       setSlideNumber(photos.length -1);
-  //       return;
-  //     }
-  //     setSlideNumber((prev) => prev - 1);
-  //     return;
-  //   }
-  //   if(SlideNumber === photos.length -1){
-  //     setSlideNumber(0);
-  //     return;
-  //   }
-  //   setSlideNumber((prev) => prev + 1);
-  //   // type === 'left' ? setSlideNumber((prev) => prev - 1) : setSlideNumber((prev) => prev + 1);
-  // }
+ 
   const photos = [
     {
       src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707778.jpg?k=56ba0babbcbbfeb3d3e911728831dcbc390ed2cb16c51d88159f82bf751d04c6&o=&hp=1",
@@ -70,6 +63,8 @@ const Hotel = () => {
     <div>
       <Navbar />
       <Header type="list" />
+      {loading ? "loading" : 
+      <>
       {OpenSlider && <>
       <div className="slider">
        <div className="sliderWrapper"  >
@@ -82,18 +77,19 @@ const Hotel = () => {
       </div>
       </>}
       <div className="hotelContainer">
-        <div className="hotelWrapper">
+      
+          <div className="hotelWrapper">
           <button className="bookNow">Reserve or Book Now!</button>
-          <h1 className="hotelTitle">Tower Street Apartments</h1>
+          <h1 className="hotelTitle">{data.name}</h1>
           <div className="hotelAddress">
             <FontAwesomeIcon icon={faLocationDot} />
-            <span>Elton St 125 New york</span>
+            <span>{data.address}</span>
           </div>
           <span className="hotelDistance">
-            Excellent location – 500m from center
+            Excellent location – {data.distance}m from center
           </span>
           <span className="hotelPriceHighlight">
-            Book a stay over $114 at this property and get a free airport taxi
+            Book a stay over ${data.cheapestPrice} at this property and get a free airport taxi
           </span>
           <div className="hotelImages">
             {photos.map((photo,i) =>{
@@ -106,19 +102,9 @@ const Hotel = () => {
           </div>
           <div className="hotelDetails">
             <div className="hotelDetailsTexts">
-              <h1 className="hotelTitle">Stay in the heart of City</h1>
+              <h1 className="hotelTitle">{data.title}</h1>
               <p className="hotelDesc">
-                Located a 5-minute walk from St. Florian's Gate in Krakow,
-                Tower Street Apartments has accommodations with air
-                conditioning and free WiFi. The units come with hardwood floors
-                and feature a fully equipped kitchenette with a microwave, a
-                flat-screen TV, and a private bathroom with shower and a
-                hairdryer. A fridge is also offered, as well as an electric tea
-                pot and a coffee machine. Popular points of interest near the
-                apartment include Cloth Hall, Main Market Square and Town Hall
-                Tower. The nearest airport is John Paul II International
-                Kraków–Balice, 16.1 km from Tower Street Apartments, and the
-                property offers a paid airport shuttle service.
+                {data.desc}
               </p>
             </div>
             <div className="hotelDetailsPrice">
@@ -134,11 +120,44 @@ const Hotel = () => {
             </div>
           </div>
         </div>
+       
+        
         <EmailList />
         <Footer />
       </div>
+      </>}
     </div>
   );
 };
 
 export default Hotel;
+
+
+
+ // const handleArrow = (type) => {
+  //   if(type === 'left'){
+  //     if(SlideNumber === 0){
+  //       setSlideNumber(photos.length -1);
+  //       return;
+  //     }
+  //     setSlideNumber((prev) => prev - 1);
+  //     return;
+  //   }
+  //   if(SlideNumber === photos.length -1){
+  //     setSlideNumber(0);
+  //     return;
+  //   }
+  //   setSlideNumber((prev) => prev + 1);
+  //   // type === 'left' ? setSlideNumber((prev) => prev - 1) : setSlideNumber((prev) => prev + 1);
+  // }
+
+// 처음에 난 id를 state로 정의하고 id 즉 url이 변경 될 때마다 useEffect를 통해서
+// 업데이트 해주고 해당 id 주소로 db에 직접 접근해서 데이터를 가져오려고 했으나
+// useFetch를 사용하는게 더 적합해보임. 즉, getHotel에 id를 params로 가져오는부분을 활용함 ! 
+//   const [id , setId] = useState('');
+  
+//   useEffect(() => {
+//     setId(location.pathname.split('/')[2]);  
+//     console.log(id)
+//   },[id]);
+  
