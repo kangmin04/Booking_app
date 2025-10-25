@@ -28,7 +28,7 @@ const Header = ({type}) => {
         room : 1 , 
       })
       const navigate = useNavigate();
-      const {dispatch} = useContext(SearchContext)
+      const  {dispatch}= useContext(SearchContext)
       
       const handleOption = (name , operation) => {
         setOptions(prev => {

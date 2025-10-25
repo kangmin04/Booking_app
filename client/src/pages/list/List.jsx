@@ -1,4 +1,4 @@
-import {React , useState} from 'react';
+import {React , useContext, useState} from 'react';
 import './List.css';
 import Navbar from '../../components/navbar/Navbar.jsx';
 import Header from '../../components/header/Header.jsx';
@@ -7,6 +7,9 @@ import {format} from 'date-fns';
 import { DateRange } from 'react-date-range';
 import SearchItem from '../../components/searchItem/SearchItem.jsx';
 import useFetch from '../../hooks/useFetch.js';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+import { SearchContext } from '../../context/SearchContext.js';
 
 const List = () => {
   const location = useLocation();
@@ -18,14 +21,17 @@ const List = () => {
   const [max , setMax] = useState(undefined);
   
   const {data , loading , error ,reFetch} = useFetch(`/api/hotels?city=${destination}&min=${min || 1}&max=${max || 9999}`); 
-  console.log('List 가져오는 과정에서 error : ' , error)
+  console.log('List 에서 처음 랜더링 시( 헤더 검색시 옵션 : ' , {destination , dates , options})
   const handleDestination = (e) => {
     setDestination(e.target.value); 
     
   }
-
+  const {dispatch} = useContext(SearchContext); 
   const handleClick = () => {
     reFetch();
+    //기존에 list searchBtn 검색시 context안올라가서 room 반영 안되던거 수정
+    dispatch({type : 'NEW_SEARCH' , payload : {destination , dates , options}})
+    console.log('dispatch 시 List 랜더링 : ' , {destination , dates , options} )
   }
   return (
     <div>
@@ -102,7 +108,7 @@ const List = () => {
           </div>
           <div className="listSearchResult">
              {
-              loading ? 'Loading' :  <>
+              loading ? (<Skeleton count={10} />) :  <>
                   {data.map(item => {
                     return <SearchItem item={item} key={item._id}/>  //item 전달하면서 searchItem에서 props으로 name , address 등 접근 가능하도록. 
                   })}

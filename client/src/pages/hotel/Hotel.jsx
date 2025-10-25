@@ -40,6 +40,7 @@ const Hotel = () => {
   };
   const {dates , options} =useContext(SearchContext);
   console.log(options)
+  
   const dayCount = (dateA , dateB) => {
       const diffTime = dateA?.getTime() - dateB?.getTime();
       const diffDay = Math.ceil(diffTime / (1000 * 60 * 60 * 24));

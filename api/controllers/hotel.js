@@ -50,10 +50,10 @@ export const getHotel = async (req, res, next) => {
 
 // GET ALL + ) req.query
 export const getHotels = async (req, res, next) => {
-  const { min, max, limit , ...others } = req.query;
+  const { min, max, limit ,sortBy, ...others } = req.query;
   try {
-    // const hotels = await Hotel.find(req.query).limit(req.query.limit);
-    const hotels = await Hotel.find({...others , cheapestPrice : {$gt : min || 1 , $lt : max || 9999}}).limit(parseInt(req.query.limit));
+    const hotels = await Hotel.find({...others , cheapestPrice : {$gt : min || 1 , $lt : max || 9999}}).limit(parseInt(req.query.limit))  
+//sortBy 부분 추가하기. 
     res.status(200).json(hotels);
   } catch (err) {
     next(err);
@@ -61,16 +61,16 @@ export const getHotels = async (req, res, next) => {
 };
 
 
-export const getHotel_city = async (req, res, next) => {
-  const { city,min, max, limit , ...others } = req.query;
-  try {
-    // const hotels = await Hotel.find(req.query).limit(req.query.limit);
-    const hotels = await Hotel.find({...others , city : city, cheapestPrice : {$gt : min || 1 , $lt : max || 9999}}).limit(parseInt(req.query.limit));
-    res.status(200).json(hotels);
-  } catch (err) {
-    next(err);
-  }
-};
+// export const getHotel_city = async (req, res, next) => {
+//   const { city,min, max, limit , ...others } = req.query;
+//   try {
+//     // const hotels = await Hotel.find(req.query).limit(req.query.limit);
+//     const hotels = await Hotel.find({...others , city : city, cheapestPrice : {$gt : min || 1 , $lt : max || 9999}}).limit(parseInt(req.query.limit));
+//     res.status(200).json(hotels);
+//   } catch (err) {
+//     next(err);
+//   }
+// };
 export const countByCity = async (req, res, next) => {
 
   const cities = req.query.cities.split(",");

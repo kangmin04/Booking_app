@@ -1,15 +1,18 @@
 import React from 'react';
 import './featured.css';
 import useFetch from '../../hooks/useFetch';
-
+// import { ClipLoader } from "react-spinners";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 const Featured = () => {
 
     const { data, loading, error } = useFetch('/api/hotels/countByCity?cities=Madrid,Berlin,London');
-    console.log(error);
     return(
         <div className="featured">
             {
-                loading ? ("loading please wait") : (
+                loading ? (
+                    <Skeleton count={5} />
+                ) : (
                     <>
                      <div className="featureItem">
                 <img src="https://cf.bstatic.com/xdata/images/hotel/square240/523320797.webp?k=65f084d84f65bea3075538152b8cfb6a049da37327d057f8d6fcdaf089f7c48d&o=" alt="" className="featuredImg" />
@@ -41,3 +44,5 @@ const Featured = () => {
 }
 
 export default Featured;
+
+// <ClipLoader loading={loading} color="gray" speedMultiplier={0.5} size={50} ></ClipLoader>

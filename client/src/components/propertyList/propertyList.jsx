@@ -1,11 +1,12 @@
 import useFetch from "../../hooks/useFetch";
 import "./propertyList.css";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const PropertyList = () => {
 
     const { data, loading ,error} = useFetch('/api/hotels/countByType');
-    console.log(error);
-    console.log(data);
+
 
     const images = ["https://cf.bstatic.com/xdata/images/hotel/square240/706413014.webp?k=f7866c2297114620c3e6081807938e89839ef2e48d5798fbdc61f4622672789a&o=" , 
                         "https://cf.bstatic.com/xdata/images/hotel/square240/35510269.webp?k=4a3f78ab1094d6e5225b2fac672c0e1e26770fc0a4ade20220c639405a99c5f9&o=" , 
@@ -16,7 +17,7 @@ const PropertyList = () => {
 
       return (
         <div className="pList">
-          {loading ? ('loading') : (
+          {loading ? (<Skeleton count={5} />) : (
             <>
               {data && images.map((img , i) => {
                 return (
