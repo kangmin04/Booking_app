@@ -72,10 +72,7 @@ export const getHotel_city = async (req, res, next) => {
   }
 };
 export const countByCity = async (req, res, next) => {
-  // Add a check to ensure req.query.cities exists
-  if (!req.query.cities) {
-    return res.status(200).json([]);
-  }
+
   const cities = req.query.cities.split(",");
   try {
     const list = await Promise.all(cities.map(city => {
@@ -94,13 +91,13 @@ export const countByType = async (req, res, next) => {
     const resortCount = await Hotel.countDocuments({type : "resort"});
     const villaCount = await Hotel.countDocuments({type : "villa"});
     const cabinCount = await Hotel.countDocuments({type : "cabin"});
-
+    //dv 쿼리는 딘수 json반환은 복수여서 type을 못가져왔엇음.
     res.status(200).json([
       {type : "hotel", count : hotelCount},
-      {type : "apartments", count : apartmentCount} ,
-      {type : "resorts", count : resortCount} ,
-      {type : "villas", count : villaCount} ,
-      {type : "cabins", count : cabinCount} ])
+      {type : "apartment", count : apartmentCount} ,
+      {type : "resort", count : resortCount} ,
+      {type : "villa", count : villaCount} ,
+      {type : "cabin", count : cabinCount} ])
       } catch (err) {
     next(err);
   }

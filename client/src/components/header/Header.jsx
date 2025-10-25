@@ -7,11 +7,13 @@ import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import {format} from 'date-fns'; //format(new Date(2014, 1, 11), "MM/dd/yyyy"); 뒤의 형식에 맞춰짐.
 import { useNavigate } from 'react-router-dom';
+import { SearchContext } from '../../context/SearchContext.js';
+import { useContext } from 'react';
 
 const Header = ({type}) => {
     const [destination , setDestination] = useState('');
-    const [openDate, setOpenDate] = useState(false);
-    const [date, setDate] = useState([
+    const [openDates, setOpenDates] = useState(false);
+    const [dates, setDates] = useState([
         {
           startDate: new Date(),
           endDate: new Date(),
@@ -26,17 +28,8 @@ const Header = ({type}) => {
         room : 1 , 
       })
       const navigate = useNavigate();
+      const {dispatch} = useContext(SearchContext)
       
-      //class component -> setState가 얕은 병합 기본적으로 지원. 
-      //this.state = {a : 1 , b : 2}  this.setState({a : 200}) 이여도 a : 200 , b : 2로 존재.
-      //function component -> 위와 같은 경우 b는 사라짐. 
-      //스프레드 연산자로 복사해야함. setState(prev => {
-      //...prev , a: 200})   즉 , 기존 데이터 유지 및 수정이 가능해짐. ! 
-      //이때 setState(...prev , {a : 200})이면 setState함수에 여러 인자를 전달하는것임.(스프레드로 각 인자 전달 후 마지막에 추가)
-
-      //[name] : ~ 이건 computed property name. ES6. 
-      //[]안에 표현식 (값으로 평가가능한것) 넣은 형태를 키로 사용가능. 
-      //즉 앞에서 선언한 변수를 뒤에서 객체의 키로 사용ㄱㄴ. 
       const handleOption = (name , operation) => {
         setOptions(prev => {
             return {
@@ -46,7 +39,8 @@ const Header = ({type}) => {
     
         }) }                                               
         const handleSearch = () => {
-            navigate('/hotels' , {state : {destination , date , options} });
+            dispatch({type : 'NEW_SEARCH' , payload : {destination , dates , options}})
+            navigate('/hotels' , {state : {destination , dates , options} });
         };
 
   return (
@@ -93,12 +87,12 @@ const Header = ({type}) => {
                 </div>
                 <div className="headerSearchItem">
                     <FontAwesomeIcon icon={faCalendarDays} className='headerIcon'/>
-                    <span onClick={() => {setOpenDate(!openDate)}} className="headerSearchText">{`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(date[0].endDate, "MM/dd/yyyy")}`}</span>
-                    {openDate && <DateRange
+                    <span onClick={() => {setOpenDates(!openDates)}} className="headerSearchText">{`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(dates[0].endDate, "MM/dd/yyyy")}`}</span>
+                    {openDates && <DateRange
                         editableDateInputs={true}
-                        onChange={item => setDate([item.selection])}
+                        onChange={item => setDates([item.selection])}
                         moveRangeOnFirstSelection={false}
-                        ranges={date}
+                        ranges={dates}
                         className='date'
                         />
                     }
@@ -149,3 +143,16 @@ const Header = ({type}) => {
 };
 
 export default Header;
+
+
+
+//class component -> setState가 얕은 병합 기본적으로 지원. 
+      //this.state = {a : 1 , b : 2}  this.setState({a : 200}) 이여도 a : 200 , b : 2로 존재.
+      //function component -> 위와 같은 경우 b는 사라짐. 
+      //스프레드 연산자로 복사해야함. setState(prev => {
+      //...prev , a: 200})   즉 , 기존 데이터 유지 및 수정이 가능해짐. ! 
+      //이때 setState(...prev , {a : 200})이면 setState함수에 여러 인자를 전달하는것임.(스프레드로 각 인자 전달 후 마지막에 추가)
+
+      //[name] : ~ 이건 computed property name. ES6. 
+      //[]안에 표현식 (값으로 평가가능한것) 넣은 형태를 키로 사용가능. 
+      //즉 앞에서 선언한 변수를 뒤에서 객체의 키로 사용ㄱㄴ. 

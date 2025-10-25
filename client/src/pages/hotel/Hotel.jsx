@@ -10,9 +10,10 @@ import {
   faCircleXmark,
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import {  useState , useContext} from "react";
 import { useLocation } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import { SearchContext } from "../../context/SearchContext";
 
 const Hotel = () => {
   const [OpenSlider , setOpenSlider] = useState(false); //'false'로 주면 문자열을 인식해서 true로 반영된다. 
@@ -23,7 +24,7 @@ const Hotel = () => {
   const id = location.pathname.split('/')[2];
 
   const {data , loading,error} = useFetch(`/api/hotels/find/${id}`);
-  console.log(data);
+
  
   const handleClick = (i) =>{
     // setOpenSlider(() => !OpenSlider);
@@ -37,7 +38,15 @@ const Hotel = () => {
       setSlideNumber(SlideNumber === photos.length - 1 ? 0 : SlideNumber + 1);
     }
   };
- 
+  const {dates , options} =useContext(SearchContext);
+  console.log(options)
+  const dayCount = (dateA , dateB) => {
+      const diffTime = dateA?.getTime() - dateB?.getTime();
+      const diffDay = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      return diffDay;
+  }
+
+  const days = dayCount(dates[0].endDate , dates[0].startDate);
   const photos = [
     {
       src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707778.jpg?k=56ba0babbcbbfeb3d3e911728831dcbc390ed2cb16c51d88159f82bf751d04c6&o=&hp=1",
@@ -108,13 +117,13 @@ const Hotel = () => {
               </p>
             </div>
             <div className="hotelDetailsPrice">
-              <h1>Perfect for a 9-night stay!</h1>
+              <h1>Perfect for a {days}-night stay!</h1>
               <span>
                 Located in the real heart of Krakow, this property has an
                 excellent location score of 9.8!
               </span>
               <h2>
-                <b>$945</b> (9 nights)
+                <b>${days * data.cheapestPrice * options.room}</b> ({days} nights)
               </h2>
               <button>Reserve or Book Now!</button>
             </div>
@@ -161,3 +170,4 @@ export default Hotel;
 //     console.log(id)
 //   },[id]);
   
+

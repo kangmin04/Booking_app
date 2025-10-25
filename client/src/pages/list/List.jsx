@@ -11,8 +11,8 @@ import useFetch from '../../hooks/useFetch.js';
 const List = () => {
   const location = useLocation();
   const [destination , setDestination] = useState(location.state.destination);
-  const [date, setDate] = useState(location.state.date);
-  const [openDate , setOpenDate] = useState(false); 
+  const [dates, setDates] = useState(location.state.dates);
+  const [openDates , setOpenDates] = useState(false); 
   const [options, setOptions] = useState(location.state.options);
   const [min , setMin] = useState(undefined);
   const [max , setMax] = useState(undefined);
@@ -42,11 +42,11 @@ const List = () => {
              </div>
              <div className="lsItem">
               <label>Check-in Date</label>
-              <span onClick = {() => setOpenDate(!openDate)}>{`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(date[0].endDate, "MM/dd/yyyy")}`}</span>
-               {openDate && (<DateRange
+              <span onClick = {() => setOpenDates(!openDates)}>{`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(dates[0].endDate, "MM/dd/yyyy")}`}</span>
+               {openDates && (<DateRange
                                      
-                                      onChange={item => setDate([item.selection])}
-                                      ranges={date}
+                                      onChange={item => setDates([item.selection])}
+                                      ranges={dates}
                                       minDate={new Date()}
                                       
                                       />
@@ -55,6 +55,12 @@ const List = () => {
              <div className="lsItem">
                 <label>Options</label>
                 <div className="lsOptions">
+                  {/* <div className="lsOptionIt">
+                    <span className="lsOptionTex">
+                      order by price
+                    </span>
+                    <input type="" className="isOption" />
+                  </div> */}
                 <div className="lsOptionItem">
                   <span className='lsOptionText'>
                     Min price <small>per night</small>
