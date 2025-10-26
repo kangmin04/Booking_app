@@ -3,6 +3,7 @@ import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
 import EmailList from "../../components/emailList/EmailList";
 import Footer from "../../components/footer/Footer";
+import Reserve from "../../components/reserve/Reserve";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleArrowLeft,
@@ -11,16 +12,20 @@ import {
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
 import {  useState , useContext} from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation , useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { SearchContext } from "../../context/SearchContext";
+import { AuthContext } from "../../context/AuthContext";
 
 const Hotel = () => {
   const [OpenSlider , setOpenSlider] = useState(false); //'false'로 주면 문자열을 인식해서 true로 반영된다. 
   const [SlideNumber , setSlideNumber] = useState(0); 
   //i를 받아와서 이걸 어떤식으로 리턴 시켜줘야할지 모르겠었는데
   //useState 로 slideNumber을 정의해서 이걸 넘겨주는 방식... 활용함! 
+
+  const [openModal , setOpenModal] = useState(false); 
   const location = useLocation();
+  const navigate = useNavigate();
   const id = location.pathname.split('/')[2];
 
   const {data , loading,error} = useFetch(`/api/hotels/find/${id}`);
@@ -48,6 +53,18 @@ const Hotel = () => {
   }
 
   const days = dayCount(dates[0].endDate , dates[0].startDate);
+
+
+  const {user} = useContext(AuthContext);
+  const handleBookClick = () => {
+   if(user){
+    setOpenModal(true);
+   }else{
+    navigate('/login');
+   }
+  }
+
+
   const photos = [
     {
       src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707778.jpg?k=56ba0babbcbbfeb3d3e911728831dcbc390ed2cb16c51d88159f82bf751d04c6&o=&hp=1",
@@ -126,7 +143,7 @@ const Hotel = () => {
               <h2>
                 <b>${days * data.cheapestPrice * options.room}</b> ({days} nights)
               </h2>
-              <button>Reserve or Book Now!</button>
+              <button onClick={handleBookClick}>Reserve or Book Now!</button>
             </div>
           </div>
         </div>
@@ -136,6 +153,7 @@ const Hotel = () => {
         <Footer />
       </div>
       </>}
+      {openModal && <Reserve setOpen={setOpenModal} hotelId={id} />}
     </div>
   );
 };

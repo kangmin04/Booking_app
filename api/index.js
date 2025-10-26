@@ -41,7 +41,7 @@ mongoose.connection.on('connected', () => {
 app.use(cors({ origin: true, credentials: true }));
 app.use(cookieParser());
 app.use(express.json());
-app.use('/api/auth' , authRouter);
+app.use('/auth' , authRouter);
 app.use('/api/hotels' , hotelsRouter);
 app.use('/api/rooms' , roomsRouter);
 app.use('/api/users' , usersRouter);
@@ -49,7 +49,6 @@ app.use('/api/users' , usersRouter);
 // centralized error handler
 app.use(errorHandler);
 
-// ✅ React build 서빙
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, "../client/build")));

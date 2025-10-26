@@ -9,6 +9,7 @@ import {format} from 'date-fns'; //format(new Date(2014, 1, 11), "MM/dd/yyyy"); 
 import { useNavigate } from 'react-router-dom';
 import { SearchContext } from '../../context/SearchContext.js';
 import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext.js';
 
 const Header = ({type}) => {
     const [destination , setDestination] = useState('');
@@ -28,8 +29,9 @@ const Header = ({type}) => {
         room : 1 , 
       })
       const navigate = useNavigate();
-      const  {dispatch}= useContext(SearchContext)
-      
+      const {dispatch} = useContext(SearchContext)
+      const {user} = useContext(AuthContext);
+
       const handleOption = (name , operation) => {
         setOptions(prev => {
             return {
@@ -75,7 +77,8 @@ const Header = ({type}) => {
             <p className="headerDesc">
                 you can get it 50 pounds off ! 
             </p>
-            <button className="headerBtn">Sign in / Register</button>
+            {!user && <button className="headerBtn">Sign in / Register</button>}
+            
             <div className="headerSearch">
                 <div className="headerSearchItem">
                     <FontAwesomeIcon icon={faBed} className='headerIcon' />
