@@ -30,7 +30,7 @@ const Hotel = () => {
 
   const {data , loading,error} = useFetch(`/api/hotels/find/${id}`);
 
- 
+  
   const handleClick = (i) =>{
     // setOpenSlider(() => !OpenSlider);
     setOpenSlider(true);
@@ -44,7 +44,7 @@ const Hotel = () => {
     }
   };
   const {dates , options} =useContext(SearchContext);
-  console.log(options)
+
   
   const dayCount = (dateA , dateB) => {
       const diffTime = dateA?.getTime() - dateB?.getTime();
