@@ -23,3 +23,6 @@ git pull로 원격 내용 가져오려함.
 
 
 curl -X POST http://localhost:8080/api/hotels -H "Content-Type: application/json" -d '{"name":"Hotel Madrid","type":"hotel","city":"Madrid","address":"123 Main St","distance":"500","desc":"A beautiful hotel in the heart of Madrid.","cheapestPrice":250}'
+
+
+curl -X POST http://localhost:8080/api/rooms -H "Content-Type: application/json" -d '{"title":"Premium Test Room","price":600,"maxpeople":3,"desc":"Expensive and fancy rooms for yeongseo and kim. have a good day",roomNumbers : {'number':100 , 'unavailableDates' : ''} }'

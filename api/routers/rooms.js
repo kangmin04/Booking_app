@@ -5,6 +5,7 @@ import {
   deleteRoom,
   getRoom,
   getRooms,
+  updateRoomAvailability
 } from '../controllers/room.js';
 
 import { verifyAdmin } from '../utils/verifyToken.js';
@@ -16,6 +17,7 @@ router.post('/:hotelid', createRoom);//추후 req.params.hotelid로 참조함. �
 //, verifyAdmin
 // UPDATE
 router.put('/:id',verifyAdmin, updateRoom);
+router.put('/availability/:id',  updateRoomAvailability)
 
 // DELETE
 router.delete('/:id',verifyAdmin, deleteRoom);

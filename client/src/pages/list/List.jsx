@@ -21,7 +21,7 @@ const List = () => {
   const [max , setMax] = useState(undefined);
   
   const {data , loading , error ,reFetch} = useFetch(`/api/hotels?city=${destination}&min=${min || 1}&max=${max || 9999}`); 
-  console.log('List 에서 처음 랜더링 시( 헤더 검색시 옵션 : ' , {destination , dates , options})
+  // console.log('List 에서 처음 랜더링 시( 헤더 검색시 옵션 : ' , {destination , dates , options})
   const handleDestination = (e) => {
     setDestination(e.target.value); 
     

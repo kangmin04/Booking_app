@@ -35,15 +35,18 @@ const Login = () => {
 
     return (
         <div className="login">
-            <div className="lContainer">
-                <input type="text" placeholder='username' id='username' onChange={handleChange} className="lInput" />
+            <form className="lContainer" onSubmit={handleClick}>
+                <input type="text" placeholder='username' id='username' onChange={handleChange} className="lInput" autoComplete='username' />
                 <input type="password" placeholder='password' id='password' onChange={handleChange} className="lInput" />
                 <button disabled={loading} className="lButton" onClick = {handleClick}>Login</button>
                 {error && <span style={{color : 'red'}}>{error.message}</span>  }
-            </div>
+            </form>
         </div>
     )    
     
 }
 
 export default Login; 
+
+// form 태그로 onsubmit 시 기존 div와 input으로 표현하는 거에 비해 
+// 엔터만으로도 클릭이 되서 더 사용자 친화적 UI
