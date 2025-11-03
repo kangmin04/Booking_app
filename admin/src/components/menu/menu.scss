@@ -1,0 +1,40 @@
+@use '../../styles/variable.scss' as *;
+
+.menu{
+    display: flex;
+    flex-direction: column;
+
+    .item {
+        display: flex;
+        flex-direction: column;
+        gap : 10px; 
+        
+
+    
+        .title {
+            font-size: 16px;
+            font-weight: 200;
+            color : $soft-color;
+            text-transform: uppercase;
+        }
+
+
+        .listItem {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 5px;
+            gap : 10px;
+            
+            &:hover {
+                background-color: $soft-bg;
+                
+            }
+
+            img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    }
+}

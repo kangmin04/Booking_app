@@ -1,0 +1,19 @@
+@use '../../styles/variable.scss' as *; 
+
+.chartBox{
+    display: flex;
+    justify-content: space-between;
+
+
+    .boxInfo{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+    }
+
+    .view{
+        // color : $dark-color;
+    }
+}
+

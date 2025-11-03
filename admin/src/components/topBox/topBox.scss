@@ -1,0 +1,36 @@
+.listItem {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; 
+    padding: 10px 5px 15px 0px;
+
+    img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    .user{
+        display: flex;
+        gap: 10px;    
+    }
+    .userInfo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+
+        .username {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .email{
+            font-size: 12px;
+        }
+    }
+
+    .amount{
+        font-weight: 500;
+    }
+}
