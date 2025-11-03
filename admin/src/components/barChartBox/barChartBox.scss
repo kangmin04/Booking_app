@@ -1,0 +1,17 @@
+.barChart {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .title {
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+
+    .chartInfo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
