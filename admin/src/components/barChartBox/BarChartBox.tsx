@@ -14,7 +14,7 @@ const BarChartBox = (props : Props) => {
     return (
         <div className="barChart">
            <div className="boxInfo">
-            <div className="title">{props.title}</div>
+            <h1 className="title">{props.title}</h1>
            </div>
            <div className="chartInfo">
            <BarChart
@@ -22,8 +22,9 @@ const BarChartBox = (props : Props) => {
             responsive
             data={props.chartData}
             >
-            <Tooltip wrapperStyle={{background:'transparent' , border : 'none'}} contentStyle={{background:'transparent' , border : 'none'}} labelStyle={{display : 'none'}} position={{x : 50 , y : 50}}/>
-            <Bar dataKey={props.dataKey} fill={props.color} />
+            <Tooltip wrapperStyle={{background:'transparent' , border : 'none'}} contentStyle={{background:'transparent' , border : 'none'}} labelStyle={{display : 'none'}} position={{x : 50 , y : 10}} 
+            cursor={{fill : 'none'}}/>
+                <Bar dataKey={props.dataKey} fill={props.color} />
             </BarChart>
            </div>
         </div>

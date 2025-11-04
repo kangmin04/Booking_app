@@ -38,7 +38,7 @@ const ChartBox = (props : Props) => {
                     {/* </ResponsiveContainer > */}
                 </div>
                 <div className="texts">
-                    <span className="percentage" style={{color : (props.percentage > 0 ? 'mangogreen' : 'tomato')}}>{props.percentage}%</span>
+                    <span className="percentage" style={{color : (props.percentage > 0 ? 'green' : 'tomato')}}>{props.percentage}%</span>
                     <span className="duration">this month</span>
                 </div>
             

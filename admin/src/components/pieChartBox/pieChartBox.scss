@@ -1,0 +1,33 @@
+.pieChartBox {
+
+    .title {
+        margin-bottom: 40px;
+    }
+
+    .pieChart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .textInfo {
+        display: flex;
+        flex-direction: row;
+        margin-top: 80px;
+        gap: 25px;
+    }
+
+    .info {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+
+
+    .color {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+    }
+}
