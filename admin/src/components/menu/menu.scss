@@ -9,8 +9,6 @@
         flex-direction: column;
         gap : 10px; 
         
-
-    
         .title {
             font-size: 16px;
             font-weight: 200;
@@ -22,10 +20,11 @@
         .listItem {
             display: flex;
             align-items: center;
+            width: 230px;
             padding: 10px;
             border-radius: 5px;
             gap : 10px;
-            
+            justify-content: start;
             &:hover {
                 background-color: $soft-bg;
                 
