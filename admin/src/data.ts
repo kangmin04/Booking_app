@@ -158,13 +158,13 @@ export const menu = [
       email: "augusta@gmail.com",
       amount: "1.932",
     },
-    {
-      id: 7,
-      img: "https://images.pexels.com/photos/874158/pexels-photo-874158.jpeg?auto=compress&cs=tinysrgb&w=1600",
-      username: "Angel Thomas",
-      email: "angel@gmail.com",
-      amount: "1.560",
-    },
+    // {
+    //   id: 7,
+    //   img: "https://images.pexels.com/photos/874158/pexels-photo-874158.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    //   username: "Angel Thomas",
+    //   email: "angel@gmail.com",
+    //   amount: "1.560",
+    // },
   ];
   
   export const chartBoxUser = {

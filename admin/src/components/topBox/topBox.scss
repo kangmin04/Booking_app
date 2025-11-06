@@ -10,9 +10,10 @@
 .listItem {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     // gap: 20px; 
-    padding: 10px 5px 15px 0px;
+    padding: 10px 5px 0px 0px;
     min-width: 0;
    width : 400px;
     img {

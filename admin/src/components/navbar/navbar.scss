@@ -17,7 +17,14 @@
 .icons{
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
+
+    .icon {
+        width: 30px;
+        height: 30px;
+     
+    }
+    
 
     .notification {
         position : relative ; 
@@ -39,7 +46,10 @@
     }
 
     .user {
+        display: flex;
+        flex-direction: row;
         width: 20px;
         height: 20px;
+         margin-right: 60px;
     }
 }
