@@ -1,8 +1,25 @@
+@use '../../styles/variable.scss' as * ; 
+
 .user {
     display: flex;
     flex-direction: column;
     width: 500px;
     height: 300px;
+
+    .userNav{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        margin-bottom: 10px;
+        .title {
+            font-size: 24px;
+        }
+
+        .userAddButton {
+            width: 80px;
+            height: 30px;
+        }
+    }
 }
    
 .view{
@@ -12,4 +29,55 @@
 .delete{
     margin : 0;
     padding: 0; 
+}
+
+
+.add {
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0,0,0,0.4);
+        position : fixed ; 
+        top : 0 ; 
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        .addContainer {
+            padding: 50px;
+            border-radius: 10px;
+            background-color: $main-bg ;
+            width: 500px;
+            height: 400px;
+            
+            h1 {
+                font-size: 24px;
+                margin-bottom: 40px;
+                color : $soft-color    
+            
+            }
+            
+            .form {
+                display: flex;
+                flex-wrap:wrap ; 
+                max-width: 500px;
+                align-items: center;
+                justify-content: space-between;
+                 
+                .formTitle {
+                   
+                }
+
+                .input {
+                    padding: 10px;
+                    background-color: transparent;
+                    color : white ; 
+                    outline: none;
+                    border: 1px solid $soft-color;
+                    border-radius: 5px;
+                
+                }
+            }
+
+        }
 }

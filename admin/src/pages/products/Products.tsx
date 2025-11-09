@@ -10,7 +10,6 @@ const Products = () => {
               headerName: 'ID',
               width: 90 
           },
-          //추후 데이터에 img 넣어줌으로써 row.img 기능하게 할것. 
           {
               field : 'img' , 
               headerName : 'Img',
@@ -63,7 +62,7 @@ const Products = () => {
             <button className="productAddButton">Add</button>
           </div>
           <div className="dataTable">
-            <DataTable columns={columns} rows={productRows} />
+            <DataTable slug='products' columns={columns} rows={productRows} />
           </div>
         </div>
           

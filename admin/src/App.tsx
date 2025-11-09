@@ -1,14 +1,13 @@
 import {
   createBrowserRouter,
   RouterProvider,
-  Routes , 
-  Link,
   Outlet
 } from "react-router-dom";
 import Home from "./pages/home/Home";
 import Users from "./pages/users/Users";
 import Products from "./pages/products/Products";
 import Login from "./pages/login/Login";
+import Single from "./pages/single/Single"
 import Navbar from "./components/navbar/Navbar";
 import Menu from "./components/menu/Menu";
 import Footer from "./components/footer/Footer";
@@ -48,6 +47,10 @@ function App() {
       {
         path: "products",
         element: <Products />,
+      }, 
+      {
+        path: "users/:id",
+        element: <Single/>,
       },]
     },{
       path : "login" , 

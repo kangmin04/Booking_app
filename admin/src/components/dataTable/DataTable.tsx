@@ -3,20 +3,10 @@ import './dataTable.scss';
 import { DataGrid, GridToolbar, GridColDef } from '@mui/x-data-grid';
 import {Link} from 'react-router-dom'
 
-// interface Props {
-//   id : number , 
-//   img  :string , 
-//   lastName : string , 
-//   firstName : string , 
-//   email : string , 
-//   phone : string , 
-//   createdAt : string ,  
-//   verified : boolean
-// }
-
 type Props = {
   columns : GridColDef[] , 
-  rows : object []
+  rows : object [] , 
+  slug : string
 }
 
 
@@ -26,12 +16,13 @@ const DataTable = (props : Props) => {
       field : 'action' , 
       headerName : 'Action',
       width : 100 ,
-      renderCell : (params) => (<>
-      <Link to='/'>
-          <img src='view.svg' alt="action logo" />
-      </Link>
-          <img src="delete.svg" alt="" />
-      </>
+      renderCell : (params) => (
+        <div className="actionContainer">
+            <Link to={`/${props.slug}/${params.row.id}`}>
+                <img src='view.svg' alt="action logo" />
+            </Link>
+            <img src="delete.svg" alt="" />
+        </div>
       )
   } 
 

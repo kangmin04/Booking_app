@@ -2,17 +2,18 @@ import DataTable from '../../components/dataTable/DataTable'
 import './users.scss'
 import {userRows} from '../../data.ts'
 import { DataGrid, GridToolbar, GridColDef } from '@mui/x-data-grid';
-
-
+import {useState} from 'react'; 
+import Add from '../../components/add/Add.tsx';
 
 const Users = () => {
+      const [openAdd , setOpenAdd] = useState(false);  
+
       const columns: GridColDef[] = [
           {   
               field: 'id',
               headerName: 'ID',
               width: 90 
           },
-          //추후 데이터에 img 넣어줌으로써 row.img 기능하게 할것. 
           {
               field : 'img' , 
               headerName : 'Img',
@@ -56,18 +57,30 @@ const Users = () => {
             width: 160,
             valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
           },
+          {   
+            field: 'verified',
+            headerName: 'verified',
+            width: 120 ,
+            type : 'boolean'
+        },
         ];
 
     return (
+      <>
         <div className="user">
           <div className="userNav">
-            <div className="title">User</div>
-            <button className="userAddButton">Add</button>
+            <h1 className="title">User</h1>
+            <button className="userAddButton" onClick = {() => setOpenAdd(!openAdd)}>Add</button>
           </div>
           <div className="dataTable">
-            <DataTable columns={columns} rows={userRows} />
+            <DataTable slug='users' columns={columns} rows={userRows} />
           </div>
+
+          
         </div>
+
+{openAdd && <Add columns={columns} slug='users'/>}
+      </>
           
     )
 

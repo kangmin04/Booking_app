@@ -1,0 +1,21 @@
+.product {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 300px;
+
+    .productNav{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        margin-bottom: 10px;
+        .title {
+            font-size: 24px;
+        }
+
+        .productAddButton {
+            width: 80px;
+            height: 30px;
+        }
+    }
+}
