@@ -66,21 +66,21 @@ const Users = () => {
         ];
 
     return (
-      <>
+      
         <div className="user">
-          <div className="userNav">
-            <h1 className="title">User</h1>
+          <div className="info">
+            <h1>User</h1>
             <button className="userAddButton" onClick = {() => setOpenAdd(!openAdd)}>Add</button>
           </div>
           <div className="dataTable">
             <DataTable slug='users' columns={columns} rows={userRows} />
           </div>
 
-          
+
+          {openAdd && <Add columns={columns} slug='users' setOpenAdd={setOpenAdd}/>}
         </div>
 
-{openAdd && <Add columns={columns} slug='users'/>}
-      </>
+    
           
     )
 
