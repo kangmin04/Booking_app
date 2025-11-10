@@ -12,14 +12,20 @@
     align-items: center;
     
     .addContainer {
-        padding: 50px;
+        padding: 40px;
         border-radius: 10px;
         background-color: $main-bg ;
         width: 500px;
         height: 400px;
-        
+        position: relative;
+
+      .close {
+       position: absolute;
+       top : 3px ; 
+       right : 8px; 
+      }
         h1 {
-            font-size: 24px;
+            // font-size: 24px;
             margin-bottom: 40px;
             color : $soft-color    
         
@@ -31,7 +37,15 @@
             max-width: 500px;
             align-items: center;
             justify-content: space-between;
-          
+
+          .formRow {
+            display: flex;
+            flex-direction: column;
+           
+            margin-bottom: 20px;
+            width: 33%;
+
+          }
             .input {
                 padding: 10px;
                 background-color: transparent;
@@ -40,6 +54,13 @@
                 border: 1px solid $soft-color;
                 border-radius: 5px;
             
+            }
+
+            button {
+                padding: 10px;
+                background-color: transparent;
+                color : white ;
+                outline: none;
             }
         }
 

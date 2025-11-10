@@ -2,8 +2,13 @@ import './products.scss'
 import DataTable from '../../components/dataTable/DataTable.tsx'
 import {productRows} from '../../data.ts'
 import { GridColDef } from '@mui/x-data-grid'
+import {useState} from 'react'; 
+import Add from '../../components/add/Add.tsx';
 
 const Products = () => {
+
+     const [openAdd , setOpenAdd] = useState(false);  
+  
      const columns: GridColDef[] = [
           {   
               field: 'id',
@@ -56,18 +61,24 @@ const Products = () => {
 
 
     return (
-        <div className="product">
-          <div className="productNav">
-            <div className="title">Products</div>
-            <button className="productAddButton">Add</button>
-          </div>
-          <div className="dataTable">
-            <DataTable slug='products' columns={columns} rows={productRows} />
-          </div>
+        <div className="products">
+        <div className="info">
+          <h1>Products</h1>
+          <button className="productAddButton" onClick = {() => setOpenAdd(!openAdd)}>Add</button>
         </div>
+        <div className="dataTable">
+          <DataTable slug='products' columns={columns} rows={productRows} />
+        </div>
+
+
+        {openAdd && <Add columns={columns} slug='products' setOpenAdd={setOpenAdd}/>}
+      </div>
           
     )
 
 }
 
 export default Products
+
+
+ 
