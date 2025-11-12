@@ -5,10 +5,45 @@
     
     .view {
         flex-basis: 50%;
+
+
+        .topInfo {
+
+
+            display: flex; 
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+
+            button {
+                width: 70px;
+                height: 25px;
+                border-radius: 5px;
+                outline: none;
+            }
+            img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                object-fit: cover;
+            }            
+        }
     }
 
 
-    .activites {
+    .details {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+
+    }
+
+    .chart {
+        margin-top: 20px;
+    }
+
+
+    .activities {
         
         li {
             position: relative ; 
