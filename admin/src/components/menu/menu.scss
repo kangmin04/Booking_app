@@ -1,4 +1,5 @@
 @use '../../styles/variable.scss' as *;
+@use '../../styles/responsive.scss' as *;
 
 .menu{
     display: flex;
@@ -14,6 +15,11 @@
             font-weight: 200;
             color : $soft-color;
             text-transform: uppercase;
+
+
+            @include lg {
+                display: none;
+            }
         }
 
 
@@ -25,6 +31,9 @@
             border-radius: 5px;
             gap : 10px;
             justify-content: start;
+            @include lg {
+                width: max-content;
+            }
             &:hover {
                 background-color: $soft-bg;
                 
@@ -33,6 +42,12 @@
             img {
                 width: 30px;
                 height: 30px;
+            }
+            
+            .listItemTitle {
+                @include lg {
+                    display: none;
+                }
             }
         }
     }

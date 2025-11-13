@@ -1,3 +1,6 @@
+@use  '../../styles/responsive.scss' as *;
+
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -22,6 +25,10 @@
     .icon {
         width: 30px;
         height: 30px;
+
+        @include lg {
+            display: none;
+        }
      
     }
     
@@ -29,6 +36,10 @@
     .notification {
         position : relative ; 
         
+        img {
+            width: 30px;
+            height: 30px;
+        }
         span {
             background-color: red;
             color : white; 

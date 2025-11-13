@@ -1,8 +1,12 @@
 @use '../../styles/variable.scss' as *; 
-
+@use '../../styles/responsive.scss' as *; 
 .single {
     display: flex;
     
+    @include xl {
+        flex-direction: column;
+        gap: 40px;
+    }
     .view {
         flex-basis: 50%;
 

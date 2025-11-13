@@ -1,5 +1,5 @@
 @use "./variable.scss" as *;
-
+@use "./responsive.scss" as *;
 * {
   margin: 0;
   padding: 0;
@@ -19,6 +19,25 @@ a {
 
 .container{
   display: flex;  
+
+  // @include xxl {
+  //   background-color: #a8292917;
+  // }
+
+  // @include xl {
+  //   background-color: #29a83e4d;
+  // }
+
+  // @include lg {
+  //   background-color: #e9de4c17;
+  // }
+  
+  // @include md {
+  //   background-color: #f7713d17;
+  // }
+  // @include sm{
+  //   background-color: #ed41f317;
+  // } 
 }
 
 .menuContainer{
