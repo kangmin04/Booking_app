@@ -25,6 +25,7 @@ const DataTable = (props) => {
             <DataGrid
                 className='dataGrid'
                 rows={props.rows}
+                // getRowId={(rows) => rows._id}
                 columns={[...props.columns , actions]}    // ... 연산자는 배열안에서 사용하는거다. 
                 
                 initialState={{

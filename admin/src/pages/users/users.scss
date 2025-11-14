@@ -6,14 +6,12 @@
     width: 500px;
     height: 300px;
 
-    .userNav{
+    .info{
         display: flex;
         flex-direction: row;
-        gap: 10px;
+        gap: 20px;
         margin-bottom: 10px;
-        .title {
-            font-size: 24px;
-        }
+       align-items: center;
 
         .userAddButton {
             width: 80px;

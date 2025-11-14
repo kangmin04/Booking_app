@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Home from "./pages/home/Home";
 import Users from "./pages/users/Users";
-import Products from "./pages/products/Products";
+import Hotels from "./pages/Hotels/Hotels"
 import User from "./pages/user/User";
 import Product from "./pages/product/Product";
 import Login from "./pages/login/Login";
@@ -65,8 +65,8 @@ function App() {
         element: <Users />,
       },
       {
-        path: "products",
-        element: <Products />,
+        path: "hotels",
+        element: <Hotels />,
       }, 
       {
         path: "users/:id",
