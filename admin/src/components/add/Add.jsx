@@ -1,13 +1,6 @@
 import './add.scss'
-import {userRows} from '../../data.ts'
-import { GridColDef } from '@mui/x-data-grid'
 
-type Props = {
-    columns : GridColDef [] , 
-    slug : string , 
-    setOpenAdd : React.Dispatch<React.SetStateAction<boolean>>
-}
-const Add = (props : Props) => {
+const Add = (props) => {
 
     const handleSubmit = () => {
          // Send data to the server

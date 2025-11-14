@@ -1,15 +1,6 @@
 import "./pieChartBox.scss"
 import { Tooltip , PieChart , Pie } from 'recharts';
 
-// type Props = {
-//     color: string , 
-//     icon : string , 
-//     title : string , 
-//     number : string , 
-//     dataKey : string , 
-//     percentage : number , 
-//     chartData : object[]
-// }
 const data = [
     { name: 'Group A', value: 400, fill: '#0088FE' },
     { name: 'Group B', value: 300, fill: '#00C49F' },

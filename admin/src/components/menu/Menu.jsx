@@ -1,6 +1,6 @@
 import './menu.scss'
 import { Link } from 'react-router-dom'
-import {menu} from '../../data.ts'
+import {menu} from '../../data.js'
 // type Props = {
 //     id : number ,
 //     title : string , 

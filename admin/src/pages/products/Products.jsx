@@ -1,15 +1,14 @@
 import './products.scss'
-import DataTable from '../../components/dataTable/DataTable.tsx'
-import {productRows} from '../../data.ts'
-import { GridColDef } from '@mui/x-data-grid'
+import DataTable from '../../components/dataTable/DataTable.jsx'
+import {productRows} from '../../data.js'
 import {useState} from 'react'; 
-import Add from '../../components/add/Add.tsx';
+import Add from '../../components/add/Add.jsx';
 
 const Products = () => {
 
      const [openAdd , setOpenAdd] = useState(false);  
   
-     const columns: GridColDef[] = [
+     const columns = [
           {   
               field: 'id',
               headerName: 'ID',

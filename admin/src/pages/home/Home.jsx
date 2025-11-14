@@ -1,10 +1,10 @@
 import TopBox from '../../components/topBox/TopBox'
 import ChartBox from '../../components/chartBox/ChartBox'
-import BarChartBox from '../../components/barChartBox/BarChartBox.tsx';
+import BarChartBox from '../../components/barChartBox/BarChartBox.jsx';
 import './home.scss'
-import {chartBoxConversion, chartBoxProduct, chartBoxRevenue, chartBoxUser , barChartBoxVisit, barChartBoxRevenue} from '../../data.ts'; 
-import PieChartBox from '../../components/pieChartBox/PieChartBox.tsx';
-import AreaChartBox from '../../components/areaChartBox/AreaChartBox.tsx';
+import {chartBoxConversion, chartBoxProduct, chartBoxRevenue, chartBoxUser , barChartBoxVisit, barChartBoxRevenue} from '../../data.js'; 
+import PieChartBox from '../../components/pieChartBox/PieChartBox.jsx';
+import AreaChartBox from '../../components/areaChartBox/AreaChartBox.jsx';
 
 const Home = () => {
 

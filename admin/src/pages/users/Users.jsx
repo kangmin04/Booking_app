@@ -1,14 +1,13 @@
 import DataTable from '../../components/dataTable/DataTable'
 import './users.scss'
-import {userRows} from '../../data.ts'
-import { DataGrid, GridToolbar, GridColDef } from '@mui/x-data-grid';
+import {userRows} from '../../data.js'
 import {useState} from 'react'; 
-import Add from '../../components/add/Add.tsx';
+import Add from '../../components/add/Add.jsx';
 
 const Users = () => {
       const [openAdd , setOpenAdd] = useState(false);  
 
-      const columns: GridColDef[] = [
+      const columns = [
           {   
               field: 'id',
               headerName: 'ID',

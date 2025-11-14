@@ -2,16 +2,7 @@ import "./chartBox.scss"
 import { Link } from "react-router-dom"
 import { Line, LineChart , Tooltip , ResponsiveContainer} from 'recharts';
 
-type Props = {
-    color: string , 
-    icon : string , 
-    title : string , 
-    number : string , 
-    dataKey : string , 
-    percentage : number , 
-    chartData : object[]
-}
-const ChartBox = (props : Props) => {
+const ChartBox = (props) => {
     return (
         <div className="chartBox">
             <div className="boxInfo">

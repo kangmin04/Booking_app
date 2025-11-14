@@ -1,13 +1,7 @@
 import './barChartBox.scss';
 import { BarChart, Bar , Tooltip} from 'recharts';
 
-interface Props {
-    title : string , 
-    color : string , 
-    dataKey : string , 
-    chartData : object[]
-}
-const BarChartBox = (props : Props) => {
+const BarChartBox = (props) => {
 
 
 

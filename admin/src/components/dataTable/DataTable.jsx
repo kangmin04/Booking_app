@@ -1,18 +1,11 @@
 
 import './dataTable.scss';
-import { DataGrid, GridToolbar, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import {Link} from 'react-router-dom'
 
-type Props = {
-  columns : GridColDef[] , 
-  rows : object [] , 
-  slug : string
-}
+const DataTable = (props) => {      
 
-
-const DataTable = (props : Props) => {      
-
-    const actions : GridColDef = {
+    const actions = {
       field : 'action' , 
       headerName : 'Action',
       width : 100 ,

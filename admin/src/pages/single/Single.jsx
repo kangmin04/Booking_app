@@ -1,18 +1,7 @@
 import './single.scss';
 import { LineChart, Line, Tooltip, CartesianGrid, XAxis, YAxis, Legend } from 'recharts';
 
-interface Props {
-    img?: string;
-    title: string;
-    info: object;
-    chart?: {
-        dataKeys: { name: string; color: string }[];
-        data: object[];
-    };
-    activities?: { time: string; text: string }[];
-}
-
-const Single = (props: Props) => {
+const Single = (props) => {
     return (
         <div className="single">
             <div className="view">
