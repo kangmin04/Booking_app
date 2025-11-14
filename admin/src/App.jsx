@@ -1,7 +1,8 @@
 import {
   createBrowserRouter,
   RouterProvider,
-  Outlet
+  Outlet,
+  Navigate
 } from "react-router-dom";
 import Home from "./pages/home/Home";
 import Users from "./pages/users/Users";
@@ -14,9 +15,22 @@ import Navbar from "./components/navbar/Navbar";
 import Menu from "./components/menu/Menu";
 import Footer from "./components/footer/Footer";
 import './styles/global.scss';
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
 
 function App() {
 
+
+  const ProtectedRoute = ({children}) => {
+    const {user} = useContext(AuthContext); 
+   
+    if(!user){
+      console.log('theres no user')
+      return <Navigate to='/login'/>
+    }
+    return children; 
+    
+  }
   const Layout = () => {
     return (
       <div className="main">
@@ -35,13 +49,17 @@ function App() {
     )
   }
   const router = createBrowserRouter([
-
     {
       path: "/",
-      element : <Layout />, 
+      element : (
+        <ProtectedRoute> 
+          <Layout />
+        </ProtectedRoute>
+      ) ,
       children : [ {
         path: "/",
-        element: <Home />,
+        element: 
+          <Home />,
       },{
         path: "users",
         element: <Users />,
