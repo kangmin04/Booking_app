@@ -8,7 +8,7 @@ const Single = (props) => {
                 <div className="info">
                     <div className="topInfo">
                         {props.img && <img src={props.img} alt="" />}
-                        <h1>{props.title}</h1>
+                        <h1>{props.username}</h1>
                         <button>Update</button>
                     </div>
                     <div className="details">
@@ -51,7 +51,7 @@ const Single = (props) => {
                 {props.activities && (
                     <ul>
                         {props.activities.map(activity => (
-                            <li key={activity.text}>
+                            <li key={`${activity.text}-${activity.time}`}>
                                 <div>
                                     <p>{activity.text}</p>
                                     <time>{activity.time}</time>

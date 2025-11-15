@@ -12,9 +12,9 @@ const DataTable = (props) => {
       renderCell : (params) => (
         <div className="actionContainer">
             <Link to={`/${props.slug}/${params.row.id}`}>
-                <img src='view.svg' alt="action logo" />
+                <img src='/view.svg' alt="action logo" />
             </Link>
-            <img src="delete.svg" alt="" />
+            <img src="/delete.svg" alt="" />
         </div>
       )
   } 
