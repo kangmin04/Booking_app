@@ -7,7 +7,7 @@ import useFetch from '../../hooks/useFetch.js';
 const Hotels = () => {
 
     const [openAdd , setOpenAdd] = useState(false);  
-    const {data} = useFetch('api/hotels'); 
+    const {data} = useFetch('/api/hotels'); 
     console.log('useFetch로 가져온 데이터들 : ' , data);
 
     const dataWithId = data.map(item => (

@@ -1,6 +1,5 @@
 import DataTable from '../../components/dataTable/DataTable'
 import './users.scss'
-import {userRows} from '../../data.js'
 import {useState} from 'react'; 
 import Add from '../../components/add/Add.jsx';
 import useFetch from '../../hooks/useFetch.js';
@@ -8,25 +7,18 @@ import useFetch from '../../hooks/useFetch.js';
 const Users = () => {
       const [openAdd , setOpenAdd] = useState(false);  
 
-      const {data} = useFetch('/api/users');
-      // console.log(data);
+      const {data , loading} = useFetch('/api/users');
+      console.log('users 실행. data : ' , data )
+      if(loading){
+        return <p>loading</p> ; 
+      }
+
       // Object.entries(data).map((prev) => {
-      //   return ([...prev , 
-      //     {
-      //       'id' : prev._id,
-            
-      //     }
-      //   ])
-      // })
+      //   return ([...prev , 'id' : prev._id}]) })
 
       const dataWithId = data.map(item => (
         {
-        ...item, id: item._id
-      }
-      )
-      );
-
-      console.log(data); 
+        ...item, id: item._id}));
       const columns = [
           {   
               field: 'id',

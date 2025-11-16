@@ -1,9 +1,24 @@
 
 import './dataTable.scss';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import axios from 'axios';
 import {Link} from 'react-router-dom'
 
 const DataTable = (props) => {      
+    const handleDelete = async (id) => {
+        try{
+            const res = await axios.delete(`/api/${props.slug}/${id}`) ; 
+            console.log(res); 
+            console.log('------------deleted-------------'); 
+        }catch(err){
+            console.log(err); 
+        }
+        
+        return (
+            console.log('does this required? ')
+        )
+    }
+    
 
     const actions = {
       field : 'action' , 
@@ -14,7 +29,7 @@ const DataTable = (props) => {
             <Link to={`/${props.slug}/${params.row.id}`}>
                 <img src='/view.svg' alt="action logo" />
             </Link>
-            <img src="/delete.svg" alt="" />
+            <img src="/delete.svg" alt=""  onClick={() => handleDelete(params.row.id)}/>
         </div>
       )
   } 
@@ -31,7 +46,7 @@ const DataTable = (props) => {
                 initialState={{
                 pagination: {
                     paginationModel: {
-                    pageSize: 10,
+                    pageSize: 15,
                     },
                 },
                 }}
