@@ -2,6 +2,15 @@ import './single.scss';
 import { LineChart, Line, Tooltip, CartesianGrid, XAxis, YAxis, Legend } from 'recharts';
 
 const Single = (props) => {
+
+    const handleUpdate = () => {
+        console.log('update'); 
+    }
+
+    const handleImg = () => {
+        
+    }
+
     return (
         <div className="single">
             <div className="view">
@@ -9,7 +18,11 @@ const Single = (props) => {
                     <div className="topInfo">
                         {props.img && <img src={props.img} alt="" />}
                         <h1>{props.username}</h1>
-                        <button>Update</button>
+                        <button onClick={handleUpdate}>Update</button>
+                        <button onClick={handleImg}>Image </button>
+                        <form action="/profileImg" method="post" enctype="multipart/form-data">
+                            <input type="file" name="avatar" />
+                        </form>
                     </div>
                     <div className="details">
                         {Object.entries(props.info).map(item => (
