@@ -2,6 +2,9 @@ import mongoose from "mongoose";
 const {Schema} = mongoose;
 
 const HotelSchema = new Schema({
+    img: {
+        type : String , 
+    },
     name: {
         type : String , 
         required : true

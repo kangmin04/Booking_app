@@ -5,6 +5,7 @@ import authRouter from './routers/auth.js';
 import hotelsRouter from './routers/hotels.js';
 import roomsRouter from './routers/rooms.js';
 import usersRouter from './routers/users.js';
+import adminRouter from './routers/admin.js';
 import cookieParser from 'cookie-parser';
 import { errorHandler } from './utils/error.js'; 
 import cors from 'cors';
@@ -45,6 +46,7 @@ app.use('/auth' , authRouter);
 app.use('/api/hotels' , hotelsRouter);
 app.use('/api/rooms' , roomsRouter);
 app.use('/api/users' , usersRouter);
+app.use('/api/admin' , adminRouter); 
 
 // centralized error handler
 app.use(errorHandler);

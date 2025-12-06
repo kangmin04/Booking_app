@@ -3,24 +3,29 @@ import Room from '../models/Room.js';
 
 // CREATE
 export const createHotel = async (req, res, next) => {
-  // console.log("Creating a new hotel with data:", req.body);
-  const newHotel = new Hotel(req.body);
+  const newHotelBody = {...req.body};
+  if (newHotelBody.featured === '') {
+      newHotelBody.featured = false;
+  }
+  const newHotel = new Hotel(newHotelBody);
   try {
     const savedHotel = await newHotel.save();
-    // console.log("Saved hotel:", savedHotel);
-    res.status(200).json(savedHotel);
+    res.status(200).json('newHotelCreated');
   } catch (err) {
-    // console.error("Error saving hotel:", err);
     next(err);
   }
 };
 
 // UPDATE
 export const updateHotel = async (req, res, next) => {
+    const updateHotelBody = {...req.body};
+    if (updateHotelBody.featured === '') {
+        updateHotelBody.featured = false;
+    }
   try {
     const updatedHotel = await Hotel.findByIdAndUpdate(
       req.params.id,
-      { $set: req.body },
+      { $set: updateHotelBody },
       { new: true }
     );
     res.status(200).json(updatedHotel);
@@ -119,4 +124,3 @@ export const getHotelRooms = async  (req, res, next) => {
     next(err);
   }
 }
-

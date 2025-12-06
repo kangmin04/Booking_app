@@ -27,13 +27,13 @@ const router = express.Router();
 router.put('/:id', verifyUser,updateUser);
 
 // DELETE
-router.delete('/:id',verifyUser, deleteUser);
+router.delete('/:id', deleteUser); //,verifyUser 제거 
 
 // GET
-router.get('/:id', verifyUser,getUser);
+router.get('/:id',getUser); //, verifyUser
 
 // GET ALL
-router.get('/', verifyAdmin,getUsers);
+router.get('/', getUsers);   //verifyAdmin 잠시 지움
 
 // //just for dev convenience
 // router.delete('/', deleteAllUsers);

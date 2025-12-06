@@ -40,7 +40,7 @@ export const login = async (req,res,next) => {
         //pw , admin 정보 필터링. 
         res.cookie("access_token", token, {
             httpOnly: true,  //cant approcah cookie or js from other user. 
-        }).status(200).json({...otherDetails});
+        }).status(200).json({details : {...otherDetails },isAdmin});
         //res.cookie -> it will store cookie in client's browser. 
         //access_token is just name of token. doesnt rlly matter. 
         
